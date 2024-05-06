@@ -2,6 +2,8 @@
 
 ### This is a template for a contact form with Next.js. It uses a custom server to send the email and validate the form. It also uses reCAPTCHA to prevent spam. Handlebars is used to create the email template.
 
+# For `pages` router visit [https://github.com/ozcancelik/nextjs-mail-form](https://github.com/ozcancelik/nextjs-mail-form) repository.
+
 ## Demo
 
 https://nextjs-14-mail-form-ozcancelik.vercel.app/
