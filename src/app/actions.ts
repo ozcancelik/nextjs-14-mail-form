@@ -33,7 +33,7 @@ export async function sendContactForm(data: Data) {
     host: process.env.CONTACT_FORM_HOST,
     auth: {
       user: process.env.CONTACT_FORM_SEND_EMAIL,
-      pass: process.env.CONTACT_FORM_PASS + 'aasdasd',
+      pass: process.env.CONTACT_FORM_PASS,
     },
     tls: {
       rejectUnauthorized: false,
