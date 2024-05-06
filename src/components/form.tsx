@@ -43,13 +43,13 @@ export default function Form() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     // You can set default values for the form here for testing purposes
-    defaultValues: {
-      nameSurname: "John Doe",
-      email: "john@joe.com",
-      phone: "5555555555",
-      message:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod",
-    },
+    // defaultValues: {
+    //   nameSurname: "John Doe",
+    //   email: "john@joe.com",
+    //   phone: "5555555555",
+    //   message:
+    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod",
+    // },
   });
   const { toast } = useToast();
 
