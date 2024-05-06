@@ -6,10 +6,10 @@ import hbs from 'nodemailer-express-handlebars';
 const handlebarOptions = {
   viewEngine: {
     extName: '.handlebars',
-    partialsDir: path.resolve('src/templates/'),
+    partialsDir: path.resolve("./src/templates/"),
     defaultLayout: false,
   },
-  viewPath: path.resolve('src/templates/'),
+  viewPath: path.resolve("./src/templates/"),
   extName: '.handlebars',
 };
 
