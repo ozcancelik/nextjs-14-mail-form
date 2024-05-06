@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js 14 Contact Form with Server Actions, Nodemailer, React Hook Form, Zod, Tailwind CSS, reCAPTCHA, and TypeScript
 
-## Getting Started
+### This is a template for a contact form with Next.js. It uses a custom server to send the email and validate the form. It also uses reCAPTCHA to prevent spam. Handlebars is used to create the email template.
 
-First, run the development server:
+## Demo
+
+https://nextjs-14-mail-form-ozcancelik.vercel.app/
+
+## Features
+
+- [x] [Next.js](https://nextjs.org/) with Server Actions for handling form submissions
+- [x] Custom server: You can run with different port. It's useful for same server with other apps.
+- [x] [Nodemailer](https://nodemailer.com/)
+- [x] [React Hook Form](https://react-hook-form.com/)
+- [x] [Zod](https://zod.dev)
+- [x] [reCAPTCHA with react-google-recaptcha](https://github.com/dozoisch/react-google-recaptcha) It uses the invisible reCAPTCHA v2.
+      More info about reCAPTCHA: https://developers.google.com/recaptcha/docs/display
+- [x] Email templating with Handlebars. https://github.com/yads/nodemailer-express-handlebars
+- [x] [TypeScript](https://www.typescriptlang.org/)
+- [x] CSS with [Tailwind CSS](https://tailwindcss.com/)
+- [x] Icons with [React Icons](https://react-icons.github.io/react-icons/)
+
+## How to use
+
+### Prerequisites
+
+- Clone the repository and install the dependencies.
+- Create a `.env` file or change the name of `.env.example` to `.env` and fill the variables.
+
+```bash
+SERVER_PORT=
+CONTACT_FORM_SEND_EMAIL=
+CONTACT_FORM_RECEIVE_EMAIL=
+CONTACT_FORM_PASS=
+CONTACT_FORM_HOST=
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
+RECAPTCHA_SECRET_KEY=
+```
+
+### Install dependencies
+
+```bash
+npm install
+# or
+yarn
+```
+
+### Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build the app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+# or
+yarn build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Run the production server:
 
-## Learn More
+```bash
+npm run start
+# or
+yarn start
+```
 
-To learn more about Next.js, take a look at the following resources:
+# Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- You can change the server port in `.env` file. If empty, it will use the default port 3000.
+- If you have problems with Nodemailer, you can try to change the port or other settings. You can find more info in the Nodemailer documentation. More info: https://nodemailer.com/smtp/
+- Gmail requires you to enable "Less secure app access" in your account settings. More info: https://nodemailer.com/usage/using-gmail/
+- For the reCAPTCHA to work, you need to add the domain to the reCAPTCHA admin panel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Tested with Node.js v18.12.1.
 
-## Deploy on Vercel
+# Using Server Actions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Server Actions is a new feature introduced in Next.js 13 that allows you to handle form submissions on the server-side without the need for a separate API route or server.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can find the server actions in the `@/app/actions` file. The `sendContactForm` function is used to send the email.
