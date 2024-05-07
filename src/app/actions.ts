@@ -1,6 +1,5 @@
 "use server";
 import nodemailer from 'nodemailer';
-import path from 'path';
 import * as handlebars from "handlebars";
 import { contactTemplate } from "../templates/contact";
 

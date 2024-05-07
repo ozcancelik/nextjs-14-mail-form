@@ -1,14 +1,12 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FiMail, FiPhone, FiUser } from "react-icons/fi";
-// import { useFormState, useFormStatus } from "react-dom";
 import { sendContactForm } from "@/app/actions";
 import { useToast } from "@/components/ui/use-toast";
-import { FaSpinner } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
 
 const formSchema = z.object({
