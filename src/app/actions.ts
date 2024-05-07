@@ -1,17 +1,9 @@
 "use server";
 import nodemailer from 'nodemailer';
 import path from 'path';
-import hbs from 'nodemailer-express-handlebars';
+import * as handlebars from "handlebars";
+import { contactTemplate } from "../templates/contact";
 
-const handlebarOptions = {
-  viewEngine: {
-    extName: '.html',
-    partialsDir: path.join(process.cwd(), 'src/templates'),
-    defaultLayout: false,
-  },
-  viewPath: path.join(process.cwd(), 'src/templates'),
-  extName: '.html',
-};
 
 interface Data {
   nameSurname: string;
@@ -40,22 +32,15 @@ export async function sendContactForm(data: Data) {
     },
   });
 
-  transporter.use('compile', hbs(handlebarOptions as any));
-
   try {
+    const body = await compileWelcomeTemplate(data.nameSurname, data.email, data.phone, data.message);
+
     await transporter.sendMail({
       from: `Website Contact Form ${process.env.CONTACT_FORM_SEND_EMAIL}`,
       replyTo: data.email,
       to: process.env.CONTACT_FORM_RECEIVE_EMAIL,
       subject: `A contact form from - ${data.nameSurname}`,
-      // @ts-ignore-next-line
-      template: 'contact',
-      context: {
-        nameSurname: data.nameSurname,
-        email: data.email,
-        phone: data.phone,
-        message: data.message,
-      },
+      html: body,
     });
 
     return { success: true };
@@ -75,4 +60,16 @@ async function validateHuman(token: string) {
   );
   const data = await response.json();
   return data.success;
+}
+
+
+export async function compileWelcomeTemplate(nameSurname: string, email: string, phone: string, message: string) {
+  const template = handlebars.compile(contactTemplate);
+  const htmlBody = template({
+    nameSurname,
+    email,
+    phone,
+    message,
+  });
+  return htmlBody;
 }
