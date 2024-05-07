@@ -26,8 +26,6 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Message must be at least 10 characters" })
     .max(1000, { message: "Message must be less than 1000 characters" }),
-
-  // This is a hidden field that will be filled by the reCAPTCHA token
 });
 
 type FormData = z.infer<typeof formSchema>;
